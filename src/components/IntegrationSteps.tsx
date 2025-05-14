@@ -2,10 +2,12 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ArrowRight, Check, Calendar, Contact, HardDrive, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Calendar, Contact, HardDrive, MessageCircle, DollarSign, CalendarDays } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/lib/i18n/translations";
+import PricingForm from "./PricingForm";
+import ScheduleCalendar from "./ScheduleCalendar";
 
 interface IntegrationStepsProps {
   currentStep: number;
@@ -36,7 +38,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
   };
   
   const calculateProgress = () => {
-    return (currentStep / 2) * 100;
+    return (currentStep / 4) * 100;
   };
 
   const stepContent = () => {
@@ -225,6 +227,34 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             </CardFooter>
           </>
         );
+      case 3:
+        return (
+          <>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold">{t('pricingTitle')}</CardTitle>
+              <CardDescription>
+                {t('pricingDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <PricingForm onSave={onNext} />
+            </CardContent>
+          </>
+        );
+      case 4:
+        return (
+          <>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold">{t('scheduleTitle')}</CardTitle>
+              <CardDescription>
+                {t('scheduleDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <ScheduleCalendar onSave={onNext} />
+            </CardContent>
+          </>
+        );
       default:
         return (
           <>
@@ -249,17 +279,17 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             </CardContent>
             <CardFooter className="flex justify-center pt-2">
               <Button 
-                onClick={() => window.location.href = "/dashboard"} 
+                onClick={() => window.location.href = "/chat"}
                 className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
               >
                 {isRTL ? (
                   <>
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    {t('goDashboard')}
+                    {t('goToChat')}
                   </>
                 ) : (
                   <>
-                    {t('goDashboard')}
+                    {t('goToChat')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
@@ -274,11 +304,11 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
     <div className="w-full max-w-md space-y-4">
       <div className="space-y-2">
         <h2 className="text-center text-slate-600 font-medium">
-          {t('step')} {currentStep} {t('of')} 2
+          {t('step')} {currentStep} {t('of')} 4
         </h2>
         <Progress value={calculateProgress()} className="h-2" />
         <div className="flex justify-between text-xs text-slate-500">
-          <span>{t('step')} {currentStep} {t('of')} 2</span>
+          <span>{t('step')} {currentStep} {t('of')} 4</span>
           <span>{Math.round(calculateProgress())}% {t('complete')}</span>
         </div>
       </div>
