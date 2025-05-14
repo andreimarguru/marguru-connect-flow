@@ -2,14 +2,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Calendar, Check, Contact, HardDrive, Bot, Scissors } from "lucide-react";
+import { ArrowRight, Scissors, Bot } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import IntegrationSteps from "@/components/IntegrationSteps";
 import ServiceIcons from "@/components/ServiceIcons";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/lib/i18n/translations";
 
 const Index = () => {
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(0);
+  const { language, isRTL } = useLanguage();
+  const { t } = useTranslation(language);
 
   const handleStart = () => {
     setCurrentStep(1);
@@ -20,7 +25,7 @@ const Index = () => {
   };
 
   const handleNextStep = () => {
-    if (currentStep < 4) {
+    if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -33,16 +38,19 @@ const Index = () => {
     }
   };
 
+  const rtlClass = isRTL ? "rtl" : "";
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-50 to-indigo-50">
+    <div className={`min-h-screen flex flex-col bg-gradient-to-br from-purple-50 to-indigo-50 ${rtlClass}`}>
       {/* Header */}
-      <header className="w-full p-4 flex justify-center">
+      <header className="w-full p-4 flex justify-between">
         <div className="flex items-center gap-2">
           <Scissors className="h-6 w-6 text-indigo-600" />
           <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             Marguru
           </h1>
         </div>
+        <LanguageSelector />
       </header>
 
       {/* Main Content */}
@@ -50,26 +58,26 @@ const Index = () => {
         {currentStep === 0 ? (
           <Card className="max-w-md w-full overflow-hidden shadow-lg border-0">
             <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
-              <CardTitle className="text-2xl font-bold">Welcome to Marguru</CardTitle>
+              <CardTitle className="text-2xl font-bold">{t('welcome')}</CardTitle>
               <CardDescription className="text-indigo-100">
-                The CRM WhatsApp bot for service professionals
+                {t('description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-6 px-6">
               <div className="space-y-4">
                 <p className="text-slate-700">
-                  Streamline your business with our powerful WhatsApp bot designed specifically for:
+                  {t('connectServices')}
                 </p>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Scissors className="h-5 w-5 text-indigo-500" />
-                  <span>Hairdressers</span>
+                  <span>{t('hairdressers')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Bot className="h-5 w-5 text-indigo-500" />
-                  <span>Service professionals</span>
+                  <span>{t('serviceProfs')}</span>
                 </div>
                 <p className="text-slate-700 pt-2">
-                  Connect your essential services to unlock the full potential of Marguru.
+                  {t('connectServices')}
                 </p>
               </div>
               <ServiceIcons />
@@ -79,8 +87,17 @@ const Index = () => {
                 onClick={handleStart} 
                 className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
               >
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {isRTL ? (
+                  <>
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                    {t('getStarted')}
+                  </>
+                ) : (
+                  <>
+                    {t('getStarted')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </CardFooter>
           </Card>
@@ -95,7 +112,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="p-4 text-center text-sm text-slate-500">
-        © 2025 Marguru. All rights reserved.
+        {t('copyright')}
       </footer>
     </div>
   );

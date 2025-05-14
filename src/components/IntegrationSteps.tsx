@@ -2,8 +2,10 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ArrowRight, Calendar, Check, Contact, HardDrive, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Calendar, Contact, HardDrive, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/lib/i18n/translations";
 
 interface IntegrationStepsProps {
   currentStep: number;
@@ -13,18 +15,20 @@ interface IntegrationStepsProps {
 
 const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsProps) => {
   const { toast } = useToast();
+  const { language, isRTL } = useLanguage();
+  const { t } = useTranslation(language);
   
   const handleConnectService = (serviceName: string) => {
     toast({
-      title: `Connecting to ${serviceName}`,
-      description: "Please authorize access in the new window.",
+      title: `${t('connecting')} ${serviceName}`,
+      description: t('authorize'),
     });
     
     // Simulating connection success
     setTimeout(() => {
       toast({
-        title: `${serviceName} Connected!`,
-        description: "Integration successful.",
+        title: `${serviceName} ${t('connected')}`,
+        description: t('integration'),
         variant: "default",
       });
       onNext();
@@ -32,7 +36,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
   };
   
   const calculateProgress = () => {
-    return (currentStep / 4) * 100;
+    return (currentStep / 2) * 100;
   };
 
   const stepContent = () => {
@@ -41,29 +45,81 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
         return (
           <>
             <CardHeader className="space-y-1">
-              <CardTitle className="text-xl font-bold">Step 1: Google Drive</CardTitle>
+              <CardTitle className="text-xl font-bold">{t('googleServicesTitle')}</CardTitle>
               <CardDescription>
-                Connect Google Drive to store and manage client documents, photos, and receipts.
+                {t('googleServicesDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-start gap-3">
-                  <HardDrive className="h-8 w-8 text-blue-600 mt-1" />
+                  <div className="flex flex-col items-center gap-2">
+                    <img src="/src/assets/icons/google-drive.svg" alt="Google Drive" className="h-8 w-8" />
+                    <img src="/src/assets/icons/gmail.svg" alt="Gmail" className="h-8 w-8" />
+                    <img src="/src/assets/icons/google-contacts.svg" alt="Google Contacts" className="h-8 w-8" />
+                  </div>
                   <div>
-                    <h3 className="font-medium text-slate-800">Google Drive Benefits</h3>
-                    <ul className="text-sm text-slate-600 mt-2 space-y-1">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Automatically store before/after client photos</span>
+                    <h3 className="font-medium text-slate-800">{t('googleServicesBenefits')}</h3>
+                    <ul className="text-sm text-slate-600 mt-2 space-y-3">
+                      <li className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <HardDrive className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                          <span className="font-medium">Google Drive</span>
+                        </div>
+                        <ul className={`${isRTL ? 'pr-6' : 'pl-6'} space-y-1`}>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('driveStore')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('driveOrganize')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('driveAccess')}</span>
+                          </li>
+                        </ul>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Organize client documents and service records</span>
+                      <li className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-red-500 flex-shrink-0" />
+                          <span className="font-medium">Google Calendar</span>
+                        </div>
+                        <ul className={`${isRTL ? 'pr-6' : 'pl-6'} space-y-1`}>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('calendarAuto')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('calendarRemind')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('calendarSync')}</span>
+                          </li>
+                        </ul>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Access client history from anywhere</span>
+                      <li className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Contact className="h-4 w-4 text-indigo-500 flex-shrink-0" />
+                          <span className="font-medium">Google Contacts</span>
+                        </div>
+                        <ul className={`${isRTL ? 'pr-6' : 'pl-6'} space-y-1`}>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('contactsSave')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('contactsGroup')}</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <span>{t('contactsTrack')}</span>
+                          </li>
+                        </ul>
                       </li>
                     </ul>
                   </div>
@@ -72,15 +128,33 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             </CardContent>
             <CardFooter className="flex justify-between pt-2">
               <Button variant="outline" onClick={onPrevious}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {isRTL ? (
+                  <>
+                    {t('back')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                ) : (
+                  <>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t('back')}
+                  </>
+                )}
               </Button>
               <Button 
-                onClick={() => handleConnectService("Google Drive")}
+                onClick={() => handleConnectService("Google")}
                 className="bg-blue-600 hover:bg-blue-700"
               >
-                Connect Drive
-                <HardDrive className="ml-2 h-4 w-4" />
+                {isRTL ? (
+                  <>
+                    <HardDrive className="mr-2 h-4 w-4" />
+                    {t('connectGoogle')}
+                  </>
+                ) : (
+                  <>
+                    {t('connectGoogle')}
+                    <HardDrive className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </CardFooter>
           </>
@@ -89,29 +163,29 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
         return (
           <>
             <CardHeader className="space-y-1">
-              <CardTitle className="text-xl font-bold">Step 2: Google Calendar</CardTitle>
+              <CardTitle className="text-xl font-bold">{t('whatsappTitle')}</CardTitle>
               <CardDescription>
-                Connect Google Calendar to manage appointments and send reminders automatically.
+                {t('whatsappDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-8 w-8 text-red-500 mt-1" />
+                  <img src="/src/assets/icons/whatsapp-business.svg" alt="WhatsApp Business" className="h-12 w-12" />
                   <div>
-                    <h3 className="font-medium text-slate-800">Google Calendar Benefits</h3>
+                    <h3 className="font-medium text-slate-800">{t('whatsappBenefits')}</h3>
                     <ul className="text-sm text-slate-600 mt-2 space-y-1">
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Automatic appointment scheduling via WhatsApp</span>
+                        <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <span>{t('whatsappAuto')}</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Send appointment reminders to clients</span>
+                        <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <span>{t('whatsappPersonal')}</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Sync with your existing calendar</span>
+                        <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <span>{t('whatsappPromo')}</span>
                       </li>
                     </ul>
                   </div>
@@ -120,111 +194,33 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             </CardContent>
             <CardFooter className="flex justify-between pt-2">
               <Button variant="outline" onClick={onPrevious}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
-              </Button>
-              <Button 
-                onClick={() => handleConnectService("Google Calendar")}
-                className="bg-red-500 hover:bg-red-600"
-              >
-                Connect Calendar
-                <Calendar className="ml-2 h-4 w-4" />
-              </Button>
-            </CardFooter>
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <CardHeader className="space-y-1">
-              <CardTitle className="text-xl font-bold">Step 3: Google Contacts</CardTitle>
-              <CardDescription>
-                Connect Google Contacts to automatically manage client contact information.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4 pt-4">
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <div className="flex items-start gap-3">
-                  <Contact className="h-8 w-8 text-indigo-500 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-slate-800">Google Contacts Benefits</h3>
-                    <ul className="text-sm text-slate-600 mt-2 space-y-1">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Automatically save new clients</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Create client groups for targeted promotions</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Track client preferences and history</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between pt-2">
-              <Button variant="outline" onClick={onPrevious}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
-              </Button>
-              <Button 
-                onClick={() => handleConnectService("Google Contacts")}
-                className="bg-indigo-500 hover:bg-indigo-600"
-              >
-                Connect Contacts
-                <Contact className="ml-2 h-4 w-4" />
-              </Button>
-            </CardFooter>
-          </>
-        );
-      case 4:
-        return (
-          <>
-            <CardHeader className="space-y-1">
-              <CardTitle className="text-xl font-bold">Step 4: WhatsApp Business</CardTitle>
-              <CardDescription>
-                Connect WhatsApp Business API to enable automated client communications.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4 pt-4">
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <div className="flex items-start gap-3">
-                  <MessageCircle className="h-8 w-8 text-green-600 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-slate-800">WhatsApp Business Benefits</h3>
-                    <ul className="text-sm text-slate-600 mt-2 space-y-1">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Automated appointment confirmations</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Personalized client communications</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span>Send promotional messages to regular clients</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between pt-2">
-              <Button variant="outline" onClick={onPrevious}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {isRTL ? (
+                  <>
+                    {t('back')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                ) : (
+                  <>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t('back')}
+                  </>
+                )}
               </Button>
               <Button 
                 onClick={() => handleConnectService("WhatsApp Business")}
                 className="bg-green-600 hover:bg-green-700"
               >
-                Connect WhatsApp
-                <MessageCircle className="ml-2 h-4 w-4" />
+                {isRTL ? (
+                  <>
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    {t('connectWhatsApp')}
+                  </>
+                ) : (
+                  <>
+                    {t('connectWhatsApp')}
+                    <MessageCircle className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </CardFooter>
           </>
@@ -233,9 +229,9 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
         return (
           <>
             <CardHeader className="space-y-1 text-center">
-              <CardTitle className="text-2xl font-bold text-green-600">All Set!</CardTitle>
+              <CardTitle className="text-2xl font-bold text-green-600">{t('allSet')}</CardTitle>
               <CardDescription className="text-base">
-                You've successfully connected all services to Marguru.
+                {t('successMessage')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 pt-4 text-center">
@@ -244,9 +240,9 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                   <div className="bg-green-100 p-3 rounded-full">
                     <Check className="h-10 w-10 text-green-600" />
                   </div>
-                  <h3 className="font-medium text-slate-800 text-lg">Your Marguru bot is ready!</h3>
+                  <h3 className="font-medium text-slate-800 text-lg">{t('botReady')}</h3>
                   <p className="text-slate-600">
-                    You can now use the full power of Marguru to manage your clients, appointments, and documents.
+                    {t('readyDescription')}
                   </p>
                 </div>
               </div>
@@ -256,8 +252,17 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                 onClick={() => window.location.href = "/dashboard"} 
                 className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
               >
-                Go to Dashboard
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {isRTL ? (
+                  <>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t('goDashboard')}
+                  </>
+                ) : (
+                  <>
+                    {t('goDashboard')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </CardFooter>
           </>
@@ -269,12 +274,12 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
     <div className="w-full max-w-md space-y-4">
       <div className="space-y-2">
         <h2 className="text-center text-slate-600 font-medium">
-          Service Connection
+          {t('step')} {currentStep} {t('of')} 2
         </h2>
         <Progress value={calculateProgress()} className="h-2" />
         <div className="flex justify-between text-xs text-slate-500">
-          <span>Step {currentStep} of 4</span>
-          <span>{Math.round(calculateProgress())}% Complete</span>
+          <span>{t('step')} {currentStep} {t('of')} 2</span>
+          <span>{Math.round(calculateProgress())}% {t('complete')}</span>
         </div>
       </div>
       
