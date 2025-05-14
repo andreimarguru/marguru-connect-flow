@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ArrowRight, Calendar, Check, Contacts, Drive, WhatsApp } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Check, Contact, HardDrive, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface IntegrationStepsProps {
@@ -49,7 +49,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             <CardContent className="space-y-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-start gap-3">
-                  <Drive className="h-8 w-8 text-blue-600 mt-1" />
+                  <HardDrive className="h-8 w-8 text-blue-600 mt-1" />
                   <div>
                     <h3 className="font-medium text-slate-800">Google Drive Benefits</h3>
                     <ul className="text-sm text-slate-600 mt-2 space-y-1">
@@ -80,7 +80,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                 className="bg-blue-600 hover:bg-blue-700"
               >
                 Connect Drive
-                <Drive className="ml-2 h-4 w-4" />
+                <HardDrive className="ml-2 h-4 w-4" />
               </Button>
             </CardFooter>
           </>
@@ -145,7 +145,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             <CardContent className="space-y-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-start gap-3">
-                  <Contacts className="h-8 w-8 text-indigo-500 mt-1" />
+                  <Contact className="h-8 w-8 text-indigo-500 mt-1" />
                   <div>
                     <h3 className="font-medium text-slate-800">Google Contacts Benefits</h3>
                     <ul className="text-sm text-slate-600 mt-2 space-y-1">
@@ -176,7 +176,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                 className="bg-indigo-500 hover:bg-indigo-600"
               >
                 Connect Contacts
-                <Contacts className="ml-2 h-4 w-4" />
+                <Contact className="ml-2 h-4 w-4" />
               </Button>
             </CardFooter>
           </>
@@ -193,7 +193,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             <CardContent className="space-y-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-start gap-3">
-                  <WhatsApp className="h-8 w-8 text-green-600 mt-1" />
+                  <MessageCircle className="h-8 w-8 text-green-600 mt-1" />
                   <div>
                     <h3 className="font-medium text-slate-800">WhatsApp Business Benefits</h3>
                     <ul className="text-sm text-slate-600 mt-2 space-y-1">
@@ -224,7 +224,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                 className="bg-green-600 hover:bg-green-700"
               >
                 Connect WhatsApp
-                <WhatsApp className="ml-2 h-4 w-4" />
+                <MessageCircle className="ml-2 h-4 w-4" />
               </Button>
             </CardFooter>
           </>

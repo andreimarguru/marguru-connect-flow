@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Calendar, Check, Contacts, Drive, Bot, Scissors } from "lucide-react";
+import { ArrowRight, Calendar, Check, Contact, HardDrive, Bot, Scissors } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import IntegrationSteps from "@/components/IntegrationSteps";
 import ServiceIcons from "@/components/ServiceIcons";
