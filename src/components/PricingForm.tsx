@@ -3,9 +3,17 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2, DollarSign } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/lib/i18n/translations";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 interface PriceItem {
   id: string;
@@ -18,12 +26,29 @@ interface PricingFormProps {
   onSave: () => void;
 }
 
+// Currency data with symbols
+const currencies = [
+  { code: "USD", symbol: "$", name: "US Dollar" },
+  { code: "EUR", symbol: "€", name: "Euro" },
+  { code: "RUB", symbol: "₽", name: "Russian Ruble" },
+  { code: "ILS", symbol: "₪", name: "Israeli Shekel" },
+  { code: "GBP", symbol: "£", name: "British Pound" },
+  { code: "JPY", symbol: "¥", name: "Japanese Yen" },
+];
+
 const PricingForm = ({ onSave }: PricingFormProps) => {
   const [priceItems, setPriceItems] = useState<PriceItem[]>([
     { id: "1", serviceName: "", duration: "", price: "" },
   ]);
+  const [currency, setCurrency] = useState("USD");
   const { language, isRTL } = useLanguage();
   const { t } = useTranslation(language);
+  const { toast } = useToast();
+
+  const getCurrencySymbol = (currencyCode: string) => {
+    const found = currencies.find(c => c.code === currencyCode);
+    return found ? found.symbol : "$";
+  };
 
   const addPriceItem = () => {
     const newItem = {
@@ -50,12 +75,51 @@ const PricingForm = ({ onSave }: PricingFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if at least one service has all fields filled
+    const hasValidService = priceItems.some(
+      item => item.serviceName.trim() !== "" && 
+             item.duration.trim() !== "" && 
+             item.price.trim() !== ""
+    );
+    
+    if (!hasValidService) {
+      toast({
+        title: "Please add at least one service",
+        description: "Fill out all the fields for at least one service",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     // Here you would normally save the data
     onSave();
   };
 
+  const currencySymbol = getCurrencySymbol(currency);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Currency selection */}
+      <div className="space-y-2">
+        <Label htmlFor="currency">Currency</Label>
+        <Select 
+          value={currency}
+          onValueChange={(value) => setCurrency(value)}
+        >
+          <SelectTrigger className="w-full sm:w-[200px]">
+            <SelectValue placeholder="Select currency" />
+          </SelectTrigger>
+          <SelectContent>
+            {currencies.map(curr => (
+              <SelectItem key={curr.code} value={curr.code}>
+                {curr.symbol} - {curr.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      
       <div className="space-y-4">
         {priceItems.map((item) => (
           <div key={item.id} className="p-4 bg-white rounded-lg shadow-sm border border-gray-100">
@@ -85,12 +149,14 @@ const PricingForm = ({ onSave }: PricingFormProps) => {
               <div className="space-y-2">
                 <Label htmlFor={`price-${item.id}`}>{t('price')}</Label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                  <div className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 flex items-center justify-center">
+                    {currencySymbol}
+                  </div>
                   <Input
                     id={`price-${item.id}`}
                     value={item.price}
                     onChange={(e) =>
-                      updatePriceItem(item.id, "price", e.target.value)
+                      updatePriceItem(item.id, "price", e.target.value.replace(/[^0-9.]/g, ''))
                     }
                     className="pl-10"
                     placeholder="0.00"
@@ -125,24 +191,6 @@ const PricingForm = ({ onSave }: PricingFormProps) => {
         <Plus className="h-4 w-4 mr-2" />
         {t('addService')}
       </Button>
-
-      <div className="bg-slate-50 p-4 rounded-lg">
-        <h3 className="font-medium text-slate-800 mb-2">{t('pricingBenefits')}</h3>
-        <ul className="text-sm text-slate-600 space-y-1">
-          <li className="flex items-start gap-2">
-            <DollarSign className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('pricingBenefit1')}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <DollarSign className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('pricingBenefit2')}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <DollarSign className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('pricingBenefit3')}</span>
-          </li>
-        </ul>
-      </div>
 
       <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700">
         {t('savePricing')}

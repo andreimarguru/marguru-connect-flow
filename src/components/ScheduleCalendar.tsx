@@ -72,7 +72,7 @@ const ScheduleCalendar = ({ onSave }: ScheduleCalendarProps) => {
         dayOff: false,
         workStart: "9:00",
         workEnd: "18:00",
-        breakStart: "13:00",
+        breakStart: "Off",
         breakEnd: "14:00",
       };
     });
@@ -196,9 +196,13 @@ const ScheduleCalendar = ({ onSave }: ScheduleCalendarProps) => {
                       <div className="flex items-center space-x-2">
                         <Select
                           value={daySchedule.breakStart}
-                          onValueChange={(value) => 
-                            updateSchedule(dateKey, "breakStart", value)
-                          }
+                          onValueChange={(value) => {
+                            updateSchedule(dateKey, "breakStart", value);
+                            // If we select "Off", we don't need to set breakEnd
+                            if (value === "Off") {
+                              updateSchedule(dateKey, "breakEnd", "14:00"); // Default value, won't be used
+                            }
+                          }}
                         >
                           <SelectTrigger className="w-[120px]">
                             <SelectValue placeholder={t('start')} />
@@ -243,24 +247,6 @@ const ScheduleCalendar = ({ onSave }: ScheduleCalendarProps) => {
         </div>
       </div>
       
-      <div className="bg-slate-50 p-4 rounded-lg">
-        <h3 className="font-medium text-slate-800 mb-2">{t('scheduleBenefits')}</h3>
-        <ul className="text-sm text-slate-600 space-y-1">
-          <li className="flex items-start gap-2">
-            <CalendarDays className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('scheduleBenefit1')}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CalendarDays className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('scheduleBenefit2')}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CalendarDays className="h-4 w-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-            <span>{t('scheduleBenefit3')}</span>
-          </li>
-        </ul>
-      </div>
-
       <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700">
         {t('saveSchedule')}
       </Button>

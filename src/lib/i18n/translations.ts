@@ -1,4 +1,3 @@
-
 type Translations = {
   [key: string]: {
     [key: string]: string;
@@ -46,7 +45,37 @@ export const translations: Translations = {
     contactsTrack: "Track client preferences and history",
     whatsappAuto: "Automated appointment confirmations",
     whatsappPersonal: "Personalized client communications",
-    whatsappPromo: "Send promotional messages to regular clients"
+    whatsappPromo: "Send promotional messages to regular clients",
+    
+    // Pricing translations
+    pricingTitle: "Step 3: Service Pricing",
+    pricingDesc: "Set up your service prices that will be visible to clients.",
+    serviceName: "Service Name",
+    serviceNamePlaceholder: "e.g. Haircut",
+    duration: "Duration",
+    durationPlaceholder: "e.g. 30 min",
+    price: "Price",
+    addService: "Add Service",
+    remove: "Remove",
+    savePricing: "Save Pricing",
+    
+    // Schedule translations
+    scheduleTitle: "Step 4: Work Schedule",
+    scheduleDesc: "Set your working hours and breaks for the week.",
+    weeklySchedule: "Weekly Schedule",
+    workingHours: "Working Hours",
+    breakTime: "Break Time",
+    start: "Start",
+    end: "End",
+    dayOff: "Day Off",
+    workDay: "Work Day",
+    noBreak: "No Break",
+    saveSchedule: "Save Schedule",
+    scheduleUpdated: "Schedule Updated",
+    scheduleUpdatedDesc: "Your work schedule has been successfully updated.",
+    
+    // Final step
+    goToChat: "Go to Chat"
   },
   es: {
     welcome: "Bienvenido a Marguru",
@@ -88,7 +117,37 @@ export const translations: Translations = {
     contactsTrack: "Realiza seguimiento de preferencias e historial de clientes",
     whatsappAuto: "Confirmaciones de citas automatizadas",
     whatsappPersonal: "Comunicaciones personalizadas con clientes",
-    whatsappPromo: "Envía mensajes promocionales a clientes habituales"
+    whatsappPromo: "Envía mensajes promocionales a clientes habituales",
+    
+    // Pricing translations
+    pricingTitle: "Paso 3: Precios de Servicios",
+    pricingDesc: "Configura los precios de tus servicios que serán visibles para los clientes.",
+    serviceName: "Nombre del Servicio",
+    serviceNamePlaceholder: "ej. Corte de pelo",
+    duration: "Duración",
+    durationPlaceholder: "ej. 30 min",
+    price: "Precio",
+    addService: "Añadir Servicio",
+    remove: "Eliminar",
+    savePricing: "Guardar Precios",
+    
+    // Schedule translations
+    scheduleTitle: "Paso 4: Horario de Trabajo",
+    scheduleDesc: "Establece tus horarios de trabajo y descansos para la semana.",
+    weeklySchedule: "Horario Semanal",
+    workingHours: "Horas de Trabajo",
+    breakTime: "Tiempo de Descanso",
+    start: "Inicio",
+    end: "Fin",
+    dayOff: "Día Libre",
+    workDay: "Día Laboral",
+    noBreak: "Sin Descanso",
+    saveSchedule: "Guardar Horario",
+    scheduleUpdated: "Horario Actualizado",
+    scheduleUpdatedDesc: "Tu horario de trabajo ha sido actualizado con éxito.",
+    
+    // Final step
+    goToChat: "Ir al Chat"
   },
   ru: {
     welcome: "Добро пожаловать в Marguru",
@@ -129,8 +188,38 @@ export const translations: Translations = {
     contactsGroup: "Создавайте группы клиентов для целевых акций",
     contactsTrack: "Отслеживайте предпочтения и историю клиентов",
     whatsappAuto: "Автоматические подтверждения встреч",
-    whatsappPersonal: "Персонализированное общение с клиентами",
-    whatsappPromo: "Отправляйте рекламные сообщения постоянным клиентам"
+    whatsappPersonal: "Персонализированное общени�� с клиентами",
+    whatsappPromo: "Отправляйте рекламные сообщения постоянным клиентам",
+    
+    // Pricing translations
+    pricingTitle: "Шаг 3: Цены на услуги",
+    pricingDesc: "Настройте цены на ваши услуги, которые будут видны клиентам.",
+    serviceName: "Название услуги",
+    serviceNamePlaceholder: "напр. Стрижка",
+    duration: "Продолжительность",
+    durationPlaceholder: "напр. 30 мин",
+    price: "Цена",
+    addService: "Добавить услугу",
+    remove: "Удалить",
+    savePricing: "Сохранить цены",
+    
+    // Schedule translations
+    scheduleTitle: "Шаг 4: График работы",
+    scheduleDesc: "Установите часы работы и перерывы на неделю.",
+    weeklySchedule: "Недельный график",
+    workingHours: "Рабочие часы",
+    breakTime: "Перерыв",
+    start: "Начало",
+    end: "Конец",
+    dayOff: "Выходной",
+    workDay: "Рабочий день",
+    noBreak: "Без перерыва",
+    saveSchedule: "Сохранить график",
+    scheduleUpdated: "График обновлен",
+    scheduleUpdatedDesc: "Ваш рабочий график был успешно обновлен.",
+    
+    // Final step
+    goToChat: "К чату"
   },
   he: {
     welcome: "ברוכים הבאים ל-Marguru",
@@ -167,12 +256,42 @@ export const translations: Translations = {
     calendarAuto: "תזמון פגישות אוטומטי דרך WhatsApp",
     calendarRemind: "שלח תזכורות פגישות ללקוחות",
     calendarSync: "סנכרן עם היומן הקיים שלך",
-    contactsSave: "שמור אוטומטית לקוחות חדשים",
+    contactsSave: "שמור אוטומatically לקוחות חדשים",
     contactsGroup: "צור קבוצות לקוחות למבצעים ממוקדים",
     contactsTrack: "עקוב אחר העדפות והיסטוריית לקוחות",
     whatsappAuto: "אישורי פגישות אוטומטיים",
     whatsappPersonal: "תקשורת מותאמת אישית עם לקוחות",
-    whatsappPromo: "שלח הודעות קידום ללקוחות קבועים"
+    whatsappPromo: "שלח הודעות קידום ללקוחות קבועים",
+    
+    // Pricing translations
+    pricingTitle: "שלב 3: תמחור שירותים",
+    pricingDesc: "הגדר את מחירי השירותים שלך שיהיו גלויים ללקוחות.",
+    serviceName: "שם השירות",
+    serviceNamePlaceholder: "לדוגמה תספורת",
+    duration: "משך זמן",
+    durationPlaceholder: "לדוגמה 30 דקות",
+    price: "מחיר",
+    addService: "הוסף שירות",
+    remove: "הסר",
+    savePricing: "שמור תמחור",
+    
+    // Schedule translations
+    scheduleTitle: "שלב 4: לוח זמנים",
+    scheduleDesc: "קבע את שעות העבודה וההפסקות שלך לשבוע.",
+    weeklySchedule: "לוח זמנים שבועי",
+    workingHours: "שעות עבודה",
+    breakTime: "זמן הפסקה",
+    start: "התחלה",
+    end: "סיום",
+    dayOff: "יום חופש",
+    workDay: "יום עבודה",
+    noBreak: "ללא הפסקה",
+    saveSchedule: "שמור לוח זמנים",
+    scheduleUpdated: "לוח הזמנים עודכן",
+    scheduleUpdatedDesc: "לוח הזמנים שלך עודכן בהצלחה.",
+    
+    // Final step
+    goToChat: "עבור לצ'אט"
   }
 };
 

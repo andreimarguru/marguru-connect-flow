@@ -1,8 +1,7 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ArrowRight, Check, Calendar, Contact, HardDrive, MessageCircle, DollarSign, CalendarDays } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Calendar, Contact, HardDrive, MessageCircle, CalendarDays } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/lib/i18n/translations";
