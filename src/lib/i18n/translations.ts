@@ -11,15 +11,18 @@ export const translations: Translations = {
     getStarted: "Get Started",
     hairdressers: "Hairdressers",
     serviceProfs: "Service professionals",
-    connectServices: "Connect your essential services to unlock the full potential of Marguru.",
+    connectServices:
+      "Connect your essential services to unlock the full potential of Marguru.",
     step: "Step",
     of: "of",
     complete: "Complete",
     googleServicesTitle: "Step 1: Google Services",
-    googleServicesDesc: "Connect Google services to manage your business efficiently.",
+    googleServicesDesc:
+      "Connect Google services to manage your business efficiently.",
     googleServicesBenefits: "Google Services Benefits",
     whatsappTitle: "Step 2: WhatsApp Business",
-    whatsappDesc: "Connect WhatsApp Business API to enable automated client communications.",
+    whatsappDesc:
+      "Connect WhatsApp Business API to enable automated client communications.",
     whatsappBenefits: "WhatsApp Business Benefits",
     back: "Back",
     connectGoogle: "Connect Google",
@@ -31,7 +34,8 @@ export const translations: Translations = {
     allSet: "All Set!",
     successMessage: "You've successfully connected all services to Marguru.",
     botReady: "Your Marguru bot is ready!",
-    readyDescription: "You can now use the full power of Marguru to manage your clients, appointments, and documents.",
+    readyDescription:
+      "You can now use the full power of Marguru to manage your clients, appointments, and documents.",
     goDashboard: "Go to Dashboard",
     copyright: "© 2025 Marguru. All rights reserved.",
     driveStore: "Automatically store before/after client photos",
@@ -46,7 +50,7 @@ export const translations: Translations = {
     whatsappAuto: "Automated appointment confirmations",
     whatsappPersonal: "Personalized client communications",
     whatsappPromo: "Send promotional messages to regular clients",
-    
+
     // Pricing translations
     pricingTitle: "Step 3: Service Pricing",
     pricingDesc: "Set up your service prices that will be visible to clients.",
@@ -58,7 +62,7 @@ export const translations: Translations = {
     addService: "Add Service",
     remove: "Remove",
     savePricing: "Save Pricing",
-    
+
     // Schedule translations
     scheduleTitle: "Step 4: Work Schedule",
     scheduleDesc: "Set your working hours and breaks for the week.",
@@ -73,9 +77,9 @@ export const translations: Translations = {
     saveSchedule: "Save Schedule",
     scheduleUpdated: "Schedule Updated",
     scheduleUpdatedDesc: "Your work schedule has been successfully updated.",
-    
+
     // Final step
-    goToChat: "Go to Chat"
+    goToChat: "Go to Chat",
   },
   es: {
     welcome: "Bienvenido a Marguru",
@@ -83,15 +87,18 @@ export const translations: Translations = {
     getStarted: "Comenzar",
     hairdressers: "Peluqueros",
     serviceProfs: "Profesionales de servicios",
-    connectServices: "Conecta tus servicios esenciales para desbloquear todo el potencial de Marguru.",
+    connectServices:
+      "Conecta tus servicios esenciales para desbloquear todo el potencial de Marguru.",
     step: "Paso",
     of: "de",
     complete: "Completo",
     googleServicesTitle: "Paso 1: Servicios de Google",
-    googleServicesDesc: "Conecta los servicios de Google para gestionar tu negocio eficientemente.",
+    googleServicesDesc:
+      "Conecta los servicios de Google para gestionar tu negocio eficientemente.",
     googleServicesBenefits: "Beneficios de los Servicios de Google",
     whatsappTitle: "Paso 2: WhatsApp Business",
-    whatsappDesc: "Conecta la API de WhatsApp Business para habilitar comunicaciones automatizadas con clientes.",
+    whatsappDesc:
+      "Conecta la API de WhatsApp Business para habilitar comunicaciones automatizadas con clientes.",
     whatsappBenefits: "Beneficios de WhatsApp Business",
     back: "Atrás",
     connectGoogle: "Conectar Google",
@@ -103,10 +110,12 @@ export const translations: Translations = {
     allSet: "¡Todo Listo!",
     successMessage: "Has conectado con éxito todos los servicios a Marguru.",
     botReady: "¡Tu bot Marguru está listo!",
-    readyDescription: "Ahora puedes utilizar todo el poder de Marguru para gestionar tus clientes, citas y documentos.",
+    readyDescription:
+      "Ahora puedes utilizar todo el poder de Marguru para gestionar tus clientes, citas y documentos.",
     goDashboard: "Ir al Panel",
     copyright: "© 2025 Marguru. Todos los derechos reservados.",
-    driveStore: "Almacena automáticamente fotos de antes/después de los clientes",
+    driveStore:
+      "Almacena automáticamente fotos de antes/después de los clientes",
     driveOrganize: "Organiza documentos de clientes y registros de servicios",
     driveAccess: "Accede al historial de clientes desde cualquier lugar",
     calendarAuto: "Programación automática de citas a través de WhatsApp",
@@ -114,14 +123,16 @@ export const translations: Translations = {
     calendarSync: "Sincroniza con tu calendario existente",
     contactsSave: "Guarda automáticamente nuevos clientes",
     contactsGroup: "Crea grupos de clientes para promociones dirigidas",
-    contactsTrack: "Realiza seguimiento de preferencias e historial de clientes",
+    contactsTrack:
+      "Realiza seguimiento de preferencias e historial de clientes",
     whatsappAuto: "Confirmaciones de citas automatizadas",
     whatsappPersonal: "Comunicaciones personalizadas con clientes",
     whatsappPromo: "Envía mensajes promocionales a clientes habituales",
-    
+
     // Pricing translations
     pricingTitle: "Paso 3: Precios de Servicios",
-    pricingDesc: "Configura los precios de tus servicios que serán visibles para los clientes.",
+    pricingDesc:
+      "Configura los precios de tus servicios que serán visibles para los clientes.",
     serviceName: "Nombre del Servicio",
     serviceNamePlaceholder: "ej. Corte de pelo",
     duration: "Duración",
@@ -130,10 +141,11 @@ export const translations: Translations = {
     addService: "Añadir Servicio",
     remove: "Eliminar",
     savePricing: "Guardar Precios",
-    
+
     // Schedule translations
     scheduleTitle: "Paso 4: Horario de Trabajo",
-    scheduleDesc: "Establece tus horarios de trabajo y descansos para la semana.",
+    scheduleDesc:
+      "Establece tus horarios de trabajo y descansos para la semana.",
     weeklySchedule: "Horario Semanal",
     workingHours: "Horas de Trabajo",
     breakTime: "Tiempo de Descanso",
@@ -145,9 +157,9 @@ export const translations: Translations = {
     saveSchedule: "Guardar Horario",
     scheduleUpdated: "Horario Actualizado",
     scheduleUpdatedDesc: "Tu horario de trabajo ha sido actualizado con éxito.",
-    
+
     // Final step
-    goToChat: "Ir al Chat"
+    goToChat: "Ir al Chat",
   },
   ru: {
     welcome: "Добро пожаловать в Marguru",
@@ -155,15 +167,18 @@ export const translations: Translations = {
     getStarted: "Начать",
     hairdressers: "Парикмахеры",
     serviceProfs: "Сервисные специалисты",
-    connectServices: "Подключите необходимые сервисы, чтобы раскрыть весь потенциал Marguru.",
+    connectServices:
+      "Подключите необходимые сервисы, чтобы раскрыть весь потенциал Marguru.",
     step: "Шаг",
     of: "из",
     complete: "Завершено",
     googleServicesTitle: "Шаг 1: Сервисы Google",
-    googleServicesDesc: "Подключите сервисы Google для эффективного управления бизнесом.",
+    googleServicesDesc:
+      "Подключите сервисы Google для эффективного управления бизнесом.",
     googleServicesBenefits: "Преимущества сервисов Google",
     whatsappTitle: "Шаг 2: WhatsApp Business",
-    whatsappDesc: "Подключите API WhatsApp Business для автоматизированного общения с клиентами.",
+    whatsappDesc:
+      "Подключите API WhatsApp Business для автоматизированного общения с клиентами.",
     whatsappBenefits: "Преимущества WhatsApp Business",
     back: "Назад",
     connectGoogle: "Подключить Google",
@@ -175,7 +190,8 @@ export const translations: Translations = {
     allSet: "Всё готово!",
     successMessage: "Вы успешно подключили все сервисы к Marguru.",
     botReady: "Ваш бот Marguru готов!",
-    readyDescription: "Теперь вы можете использовать всю мощь Marguru для управления клиентами, встречами и документами.",
+    readyDescription:
+      "Теперь вы можете использовать всю мощь Marguru для управления клиентами, встречами и документами.",
     goDashboard: "Перейти в Панель",
     copyright: "© 2025 Marguru. Все права защищены.",
     driveStore: "Автоматически сохраняйте фото клиентов до/после",
@@ -188,21 +204,21 @@ export const translations: Translations = {
     contactsGroup: "Создавайте группы клиентов для целевых акций",
     contactsTrack: "Отслеживайте предпочтения и историю клиентов",
     whatsappAuto: "Автоматические подтверждения встреч",
-    whatsappPersonal: "Персонализированное общени�� с клиентами",
+    whatsappPersonal: "Персонализированное общение с клиентами",
     whatsappPromo: "Отправляйте рекламные сообщения постоянным клиентам",
-    
+
     // Pricing translations
     pricingTitle: "Шаг 3: Цены на услуги",
     pricingDesc: "Настройте цены на ваши услуги, которые будут видны клиентам.",
-    serviceName: "Название услуги",
+    serviceName: "Услуга",
     serviceNamePlaceholder: "напр. Стрижка",
-    duration: "Продолжительность",
+    duration: "Длительность",
     durationPlaceholder: "напр. 30 мин",
     price: "Цена",
     addService: "Добавить услугу",
     remove: "Удалить",
     savePricing: "Сохранить цены",
-    
+
     // Schedule translations
     scheduleTitle: "Шаг 4: График работы",
     scheduleDesc: "Установите часы работы и перерывы на неделю.",
@@ -217,9 +233,9 @@ export const translations: Translations = {
     saveSchedule: "Сохранить график",
     scheduleUpdated: "График обновлен",
     scheduleUpdatedDesc: "Ваш рабочий график был успешно обновлен.",
-    
+
     // Final step
-    goToChat: "К чату"
+    goToChat: "К чату",
   },
   he: {
     welcome: "ברוכים הבאים ל-Marguru",
@@ -227,7 +243,8 @@ export const translations: Translations = {
     getStarted: "התחל",
     hairdressers: "מעצבי שיער",
     serviceProfs: "אנשי מקצוע בתחום השירות",
-    connectServices: "חבר את השירותים החיוניים שלך כדי לשחרר את מלוא הפוטנציאל של Marguru.",
+    connectServices:
+      "חבר את השירותים החיוניים שלך כדי לשחרר את מלוא הפוטנציאל של Marguru.",
     step: "שלב",
     of: "מתוך",
     complete: "הושלם",
@@ -235,7 +252,8 @@ export const translations: Translations = {
     googleServicesDesc: "חבר שירותי Google לניהול העסק שלך ביעילות.",
     googleServicesBenefits: "יתרונות שירותי Google",
     whatsappTitle: "שלב 2: WhatsApp Business",
-    whatsappDesc: "חבר את ה-API של WhatsApp Business לאפשר תקשורת אוטומטית עם לקוחות.",
+    whatsappDesc:
+      "חבר את ה-API של WhatsApp Business לאפשר תקשורת אוטומטית עם לקוחות.",
     whatsappBenefits: "יתרונות WhatsApp Business",
     back: "חזור",
     connectGoogle: "התחבר ל-Google",
@@ -247,7 +265,8 @@ export const translations: Translations = {
     allSet: "הכל מוכן!",
     successMessage: "חיברת בהצלחה את כל השירותים ל-Marguru.",
     botReady: "הבוט Marguru שלך מוכן!",
-    readyDescription: "אתה יכול כעת להשתמש בכוח המלא של Marguru לנהל את הלקוחות, הפגישות והמסמכים שלך.",
+    readyDescription:
+      "אתה יכול כעת להשתמש בכוח המלא של Marguru לנהל את הלקוחות, הפגישות והמסמכים שלך.",
     goDashboard: "עבור ללוח הבקרה",
     copyright: "© 2025 Marguru. כל הזכויות שמורות.",
     driveStore: "אחסן אוטומטית תמונות לפני/אחרי של לקוחות",
@@ -262,7 +281,7 @@ export const translations: Translations = {
     whatsappAuto: "אישורי פגישות אוטומטיים",
     whatsappPersonal: "תקשורת מותאמת אישית עם לקוחות",
     whatsappPromo: "שלח הודעות קידום ללקוחות קבועים",
-    
+
     // Pricing translations
     pricingTitle: "שלב 3: תמחור שירותים",
     pricingDesc: "הגדר את מחירי השירותים שלך שיהיו גלויים ללקוחות.",
@@ -274,7 +293,7 @@ export const translations: Translations = {
     addService: "הוסף שירות",
     remove: "הסר",
     savePricing: "שמור תמחור",
-    
+
     // Schedule translations
     scheduleTitle: "שלב 4: לוח זמנים",
     scheduleDesc: "קבע את שעות העבודה וההפסקות שלך לשבוע.",
@@ -289,18 +308,20 @@ export const translations: Translations = {
     saveSchedule: "שמור לוח זמנים",
     scheduleUpdated: "לוח הזמנים עודכן",
     scheduleUpdatedDesc: "לוח הזמנים שלך עודכן בהצלחה.",
-    
+
     // Final step
-    goToChat: "עבור לצ'אט"
-  }
+    goToChat: "עבור לצ'אט",
+  },
 };
 
-export const useTranslation = (language: string = 'en') => {
-  const safeLanguage = Object.keys(translations).includes(language) ? language : 'en';
-  
+export const useTranslation = (language: string = "en") => {
+  const safeLanguage = Object.keys(translations).includes(language)
+    ? language
+    : "en";
+
   const t = (key: string): string => {
     return translations[safeLanguage][key] || translations.en[key] || key;
   };
-  
+
   return { t };
 };
