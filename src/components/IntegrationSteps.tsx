@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -7,6 +8,8 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/lib/i18n/translations";
 import PricingForm from "./PricingForm";
 import ScheduleCalendar from "./ScheduleCalendar";
+import AdvancedPreferencesForm from "./AdvancedPreferencesForm";
+import QRCodeDisplay from "./QRCodeDisplay";
 
 interface IntegrationStepsProps {
   currentStep: number;
@@ -37,7 +40,7 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
   };
   
   const calculateProgress = () => {
-    return (currentStep / 4) * 100;
+    return (currentStep / 5) * 100;
   };
 
   const stepContent = () => {
@@ -254,6 +257,20 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
             </CardContent>
           </>
         );
+      case 5:
+        return (
+          <>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold">{t('advancedPreferencesTitle')}</CardTitle>
+              <CardDescription>
+                {t('advancedPreferencesDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <AdvancedPreferencesForm onSave={onNext} />
+            </CardContent>
+          </>
+        );
       default:
         return (
           <>
@@ -273,6 +290,9 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
                   <p className="text-slate-600">
                     {t('readyDescription')}
                   </p>
+                  
+                  {/* QR code display */}
+                  <QRCodeDisplay />
                 </div>
               </div>
             </CardContent>
@@ -303,11 +323,11 @@ const IntegrationSteps = ({ currentStep, onNext, onPrevious }: IntegrationStepsP
     <div className="w-full max-w-md space-y-4">
       <div className="space-y-2">
         <h2 className="text-center text-slate-600 font-medium">
-          {t('step')} {currentStep} {t('of')} 4
+          {t('step')} {currentStep} {t('of')} 5
         </h2>
         <Progress value={calculateProgress()} className="h-2" />
         <div className="flex justify-between text-xs text-slate-500">
-          <span>{t('step')} {currentStep} {t('of')} 4</span>
+          <span>{t('step')} {currentStep} {t('of')} 5</span>
           <span>{Math.round(calculateProgress())}% {t('complete')}</span>
         </div>
       </div>
