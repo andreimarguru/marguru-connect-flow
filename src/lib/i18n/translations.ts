@@ -6,6 +6,8 @@ type Translations = {
 
 export const translations: Translations = {
   en: {
+    next: "Next",
+    gmailConnected: "Google Services Connected",
     welcome: "Welcome to Marguru",
     description: "The CRM WhatsApp bot for service professionals",
     getStarted: "Get Started",
@@ -50,6 +52,7 @@ export const translations: Translations = {
     whatsappAuto: "Automated appointment confirmations",
     whatsappPersonal: "Personalized client communications",
     whatsappPromo: "Send promotional messages to regular clients",
+    cancel: "Cancel Changes",
 
     // Pricing translations
     pricingTitle: "Step 3: Service Pricing",
@@ -78,10 +81,37 @@ export const translations: Translations = {
     scheduleUpdated: "Schedule Updated",
     scheduleUpdatedDesc: "Your work schedule has been successfully updated.",
 
+    // Policy Setup translations
+    policyTitle: "Step 5: Booking Preferences",
+    policyDesc: "Set your booking preferences for appointments",
+    cancellationPolicy: "Cancellation Policy",
+    cancellationPolicyPlaceholder: "Set a cancellation policy for your clients",
+    noPolicy: "No policy",
+    hoursBeforeLabel: "hours before",
+    hours12: "12 hours before",
+    hours24: "24 hours before",
+    appointmentGap: "Time between appointments",
+    appointmentGapPlaceholder: "Select gap between appointments",
+    noGap: "No gap",
+    minutes5: "5 min",
+    minutes10: "10 min",
+    minutes15: "15 min",
+    custom: "Custom",
+    enterMinutes: "Enter minutes",
+    requiredFields: "Required Fields",
+    requiredFieldsDesc: "Please select both policy options before continuing.",
+    customGapRequired: "Custom Gap Required",
+    customGapDesc: "Please specify the custom gap duration.",
+    preferencesSaved: "Preferences Saved",
+    preferencesSavedDesc:
+      "Your booking preferences have been saved successfully.",
+
     // Final step
     goToChat: "Go to Chat",
   },
   es: {
+    next: "Siguiente",
+    gmailConnected: "Servicios de Google conectados",
     welcome: "Bienvenido a Marguru",
     description: "El bot de WhatsApp CRM para profesionales de servicios",
     getStarted: "Comenzar",
@@ -128,6 +158,7 @@ export const translations: Translations = {
     whatsappAuto: "Confirmaciones de citas automatizadas",
     whatsappPersonal: "Comunicaciones personalizadas con clientes",
     whatsappPromo: "Envía mensajes promocionales a clientes habituales",
+    cancel: "Cancelar cambios",
 
     // Pricing translations
     pricingTitle: "Paso 3: Precios de Servicios",
@@ -158,10 +189,39 @@ export const translations: Translations = {
     scheduleUpdated: "Horario Actualizado",
     scheduleUpdatedDesc: "Tu horario de trabajo ha sido actualizado con éxito.",
 
+    // Policy Setup translations
+    policyTitle: "Paso 5: Preferencias de reserva",
+    policyDesc: "Configure sus preferencias de reserva para las citas",
+    cancellationPolicy: "Política de cancelación",
+    cancellationPolicyPlaceholder:
+      "Establezca una política de cancelación para sus clientes",
+    noPolicy: "Sin política",
+    hoursBeforeLabel: "horas antes",
+    hours12: "12 horas antes",
+    hours24: "24 horas antes",
+    appointmentGap: "Tiempo entre citas",
+    appointmentGapPlaceholder: "Seleccione el intervalo entre citas",
+    noGap: "Sin intervalo",
+    minutes5: "5 min",
+    minutes10: "10 min",
+    minutes15: "15 min",
+    custom: "Personalizado",
+    enterMinutes: "Ingrese minutos",
+    requiredFields: "Campos requeridos",
+    requiredFieldsDesc:
+      "Por favor, seleccione ambas opciones antes de continuar.",
+    customGapRequired: "Intervalo personalizado requerido",
+    customGapDesc: "Por favor, especifique la duración del intervalo.",
+    preferencesSaved: "Preferencias guardadas",
+    preferencesSavedDesc:
+      "Sus preferencias de reserva se han guardado con éxito.",
+
     // Final step
     goToChat: "Ir al Chat",
   },
   ru: {
+    next: "Далее",
+    gmailConnected: "Сервисы Google подключены",
     welcome: "Добро пожаловать в Marguru",
     description: "CRM WhatsApp бот для профессионалов сферы услуг",
     getStarted: "Начать",
@@ -206,6 +266,7 @@ export const translations: Translations = {
     whatsappAuto: "Автоматические подтверждения встреч",
     whatsappPersonal: "Персонализированное общение с клиентами",
     whatsappPromo: "Отправляйте рекламные сообщения постоянным клиентам",
+    cancel: "Отменить изменения",
 
     // Pricing translations
     pricingTitle: "Шаг 3: Цены на услуги",
@@ -234,10 +295,36 @@ export const translations: Translations = {
     scheduleUpdated: "График обновлен",
     scheduleUpdatedDesc: "Ваш рабочий график был успешно обновлен.",
 
+    // Policy Setup translations
+    policyTitle: "Шаг 5: Настройки бронирования",
+    policyDesc: "Установите настройки бронирования для встреч",
+    cancellationPolicy: "Политика отмены",
+    cancellationPolicyPlaceholder: "Установите политику отмены для клиентов",
+    noPolicy: "Без политики",
+    hoursBeforeLabel: "часов до",
+    hours12: "За 12 часов",
+    hours24: "За 24 часа",
+    appointmentGap: "Время между встречами",
+    appointmentGapPlaceholder: "Выберите интервал между встречами",
+    noGap: "Без интервала",
+    minutes5: "5 мин",
+    minutes10: "10 мин",
+    minutes15: "15 мин",
+    custom: "Другое",
+    enterMinutes: "Введите минуты",
+    requiredFields: "Обязательные поля",
+    requiredFieldsDesc: "Пожалуйста, выберите обе опции перед продолжением.",
+    customGapRequired: "Укажите интервал",
+    customGapDesc: "Пожалуйста, укажите длительность интервала.",
+    preferencesSaved: "Настройки сохранены",
+    preferencesSavedDesc: "Ваши настройки бронирования успешно сохранены.",
+
     // Final step
     goToChat: "К чату",
   },
   he: {
+    next: "הבא",
+    gmailConnected: "שירותי Google מחוברים",
     welcome: "ברוכים הבאים ל-Marguru",
     description: "בוט WhatsApp CRM לאנשי מקצוע בתחום השירות",
     getStarted: "התחל",
@@ -278,9 +365,10 @@ export const translations: Translations = {
     contactsSave: "שמור אוטומatically לקוחות חדשים",
     contactsGroup: "צור קבוצות לקוחות למבצעים ממוקדים",
     contactsTrack: "עקוב אחר העדפות והיסטוריית לקוחות",
-    whatsappAuto: "אישורי פגישות אוטומטיים",
+    whatsappAuto: "אישורי פגישות אוטומיים",
     whatsappPersonal: "תקשורת מותאמת אישית עם לקוחות",
     whatsappPromo: "שלח הודעות קידום ללקוחות קבועים",
+    cancel: "ביטול שינויים",
 
     // Pricing translations
     pricingTitle: "שלב 3: תמחור שירותים",
@@ -308,6 +396,30 @@ export const translations: Translations = {
     saveSchedule: "שמור לוח זמנים",
     scheduleUpdated: "לוח הזמנים עודכן",
     scheduleUpdatedDesc: "לוח הזמנים שלך עודכן בהצלחה.",
+
+    // Policy Setup translations
+    policyTitle: "שלב 5: העדפות הזמנה",
+    policyDesc: "הגדר את העדפות ההזמנה שלך לפגישות",
+    cancellationPolicy: "מדיניות ביטולים",
+    cancellationPolicyPlaceholder: "הגדר מדיניות ביטולים ללקוחות שלך",
+    noPolicy: "ללא מדיניות",
+    hoursBeforeLabel: "שעות לפני",
+    hours12: "12 שעות לפני",
+    hours24: "24 שעות לפני",
+    appointmentGap: "זמן בין פגישות",
+    appointmentGapPlaceholder: "בחר רווח זמן בין פגישות",
+    noGap: "ללא רווח",
+    minutes5: "5 דקות",
+    minutes10: "10 דקות",
+    minutes15: "15 דקות",
+    custom: "מותאם אישית",
+    enterMinutes: "הזן דקות",
+    requiredFields: "שדות חובה",
+    requiredFieldsDesc: "אנא בחר את שתי האפשרויות לפני שתמשיך.",
+    customGapRequired: "נדרש רווח זמן מותאם אישית",
+    customGapDesc: "אנא ציין את משך הרווח.",
+    preferencesSaved: "ההעדפות נשמרו",
+    preferencesSavedDesc: "העדפות ההזמנה שלך נשמרו בהצלחה.",
 
     // Final step
     goToChat: "עבור לצ'אט",

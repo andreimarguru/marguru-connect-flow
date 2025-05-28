@@ -1,5 +1,10 @@
-
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Scissors, User, Bot, Calendar, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
@@ -24,7 +29,7 @@ const Dashboard = () => {
           </h1>
         </div>
       </header>
-      
+
       <main className="max-w-6xl mx-auto mt-6 space-y-6">
         <div className="grid gap-6 md:grid-cols-3">
           <Card>
@@ -39,7 +44,7 @@ const Dashboard = () => {
               <p className="text-sm text-muted-foreground">No clients yet</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center">
@@ -49,10 +54,12 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
-              <p className="text-sm text-muted-foreground">No appointments yet</p>
+              <p className="text-sm text-muted-foreground">
+                No appointments yet
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center">
@@ -68,7 +75,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
-        
+
         <Card className="mt-6">
           <CardHeader>
             <CardTitle>Coming Soon</CardTitle>
@@ -76,8 +83,8 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <p className="text-center text-muted-foreground py-8">
-              Your Marguru bot is now connected to all your services. 
-              Soon you'll see your client data, appointments, and analytics here.
+              Your Marguru bot is now connected to all your services. Soon
+              you'll see your client data, appointments, and analytics here.
             </p>
           </CardContent>
         </Card>

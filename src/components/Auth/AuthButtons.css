@@ -1,0 +1,18 @@
+.authButton {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .authButton:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }

@@ -17,76 +17,47 @@ import {
   HardDrive,
   MessageCircle,
   CalendarDays,
+  CheckCircle2,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/lib/i18n/translations";
 import PricingForm from "./PricingForm";
 import ScheduleCalendar from "./ScheduleCalendar";
+import PolicySetup from "./PolicySetup";
 import ApiClient from "../services/ApiClient";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useUserStore } from "@/store/userStore";
+
 interface IntegrationStepsProps {
   currentStep: number;
   onNext: () => void;
   onPrevious: () => void;
+  onConnectService: (serviceName: string) => void;
+  tokens: any[];
+  services?: any[];
 }
 
 const IntegrationSteps = ({
   currentStep,
   onNext,
   onPrevious,
+  onConnectService,
+  tokens,
+  services,
 }: IntegrationStepsProps) => {
   const { toast } = useToast();
   const { language, isRTL } = useLanguage();
   const { t } = useTranslation(language);
-  const { getAccessTokenSilently } = useAuth0();
-  const apiClient = new ApiClient(
-    getAccessTokenSilently,
-    import.meta.env.VITE_AUTH0_AUDIENCE,
-    "read:data write:data"
+  const isGmailConnected = tokens?.some((token) => token.kind === "GMAIL");
+  const isWhatsappConnected = tokens?.some(
+    (token) => token.kind === "WHATSAPP"
   );
-
-  const handleConnectService = async (serviceName: string) => {
-    // if (serviceName === "Gmail") {
-    //   try {
-    //     const response = await apiClient.get("/api/gmail/connect");
-    //     if (response.auth_url) {
-    //       window.location.href = response.auth_url;
-    //     } else {
-    //       console.error("No auth_url returned from the backend");
-    //     }
-    //   } catch (error) {
-    //     console.error("Failed to connect Gmail integration:", error);
-    //   }
-    // } else if (serviceName === "WhatsApp") {
-    //   try {
-    //     const response = await apiClient.get("/api/whatsapp/connect");
-    //     if (response.auth_url) {
-    //       window.location.href = response.auth_url;
-    //     } else {
-    //       console.error("No auth_url returned from the backend");
-    //     }
-    //   } catch (error) {
-    //     console.error("Failed to connect WhatsApp integration:", error);
-    //   }
-    // }
-    toast({
-      title: `${t("connecting")} ${serviceName}`,
-      description: t("authorize"),
-    });
-    // Simulating connection success
-    setTimeout(() => {
-      toast({
-        title: `${serviceName} ${t("connected")}`,
-        description: t("integration"),
-        variant: "default",
-      });
-      onNext();
-    }, 1500);
-  };
+  const { userInfo } = useUserStore();
+  const initialSchedule = userInfo?.businessInfo?.workSchedule;
 
   const calculateProgress = () => {
-    return (currentStep / 4) * 100;
+    return Math.min((currentStep / 5) * 100, 100);
   };
 
   const stepContent = () => {
@@ -190,36 +161,51 @@ const IntegrationSteps = ({
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between pt-2">
-              <Button variant="outline" onClick={onPrevious}>
-                {isRTL ? (
-                  <>
-                    {t("back")}
+            <CardFooter className="flex flex-col justify-between pt-2">
+              {isGmailConnected && (
+                <div className="flex items-center justify-center mb-2 text-green-600 font-medium">
+                  <Check className="h-5 w-5 mr-2" />
+                  {t("gmailConnected")}
+                </div>
+              )}
+              <div className="flex w-full justify-between">
+                <Button variant="outline" onClick={onPrevious}>
+                  {isRTL ? (
+                    <>
+                      {t("back")}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      <ArrowLeft className="mr-2 h-4 w-4" />
+                      {t("back")}
+                    </>
+                  )}
+                </Button>
+                {isGmailConnected ? (
+                  <Button onClick={onNext} className="bg-indigo-600 text-white">
+                    {t("next") || "Next Step"}
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </>
+                  </Button>
                 ) : (
-                  <>
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    {t("back")}
-                  </>
+                  <Button
+                    onClick={() => onConnectService("Gmail")}
+                    className="bg-blue-600 hover:bg-blue-700"
+                  >
+                    {isRTL ? (
+                      <>
+                        <HardDrive className="mr-2 h-4 w-4" />
+                        {t("connectGoogle")}
+                      </>
+                    ) : (
+                      <>
+                        {t("connectGoogle")}
+                        <HardDrive className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
                 )}
-              </Button>
-              <Button
-                onClick={() => handleConnectService("Gmail")}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                {isRTL ? (
-                  <>
-                    <HardDrive className="mr-2 h-4 w-4" />
-                    {t("connectGoogle")}
-                  </>
-                ) : (
-                  <>
-                    {t("connectGoogle")}
-                    <HardDrive className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
+              </div>
             </CardFooter>
           </>
         );
@@ -262,36 +248,51 @@ const IntegrationSteps = ({
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between pt-2">
-              <Button variant="outline" onClick={onPrevious}>
-                {isRTL ? (
-                  <>
-                    {t("back")}
+            <CardFooter className="flex flex-col justify-between pt-2">
+              {isWhatsappConnected && (
+                <div className="flex items-center justify-center mb-2 text-green-600 font-medium">
+                  <Check className="h-5 w-5 mr-2" />
+                  {t("connected")}
+                </div>
+              )}
+              <div className="flex w-full justify-between">
+                <Button variant="outline" onClick={onPrevious}>
+                  {isRTL ? (
+                    <>
+                      {t("back")}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      <ArrowLeft className="mr-2 h-4 w-4" />
+                      {t("back")}
+                    </>
+                  )}
+                </Button>
+                {isWhatsappConnected ? (
+                  <Button onClick={onNext} className="bg-indigo-600 text-white">
+                    {t("next") || "Next Step"}
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </>
+                  </Button>
                 ) : (
-                  <>
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    {t("back")}
-                  </>
+                  <Button
+                    onClick={() => onConnectService("WhatsApp")}
+                    className="bg-green-600 hover:bg-green-700"
+                  >
+                    {isRTL ? (
+                      <>
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        {t("connectWhatsApp")}
+                      </>
+                    ) : (
+                      <>
+                        {t("connectWhatsApp")}
+                        <MessageCircle className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
                 )}
-              </Button>
-              <Button
-                onClick={() => handleConnectService("WhatsApp")}
-                className="bg-green-600 hover:bg-green-700"
-              >
-                {isRTL ? (
-                  <>
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    {t("connectWhatsApp")}
-                  </>
-                ) : (
-                  <>
-                    {t("connectWhatsApp")}
-                    <MessageCircle className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
+              </div>
             </CardFooter>
           </>
         );
@@ -305,7 +306,11 @@ const IntegrationSteps = ({
               <CardDescription>{t("pricingDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="pt-4">
-              <PricingForm onSave={onNext} />
+              <PricingForm
+                onSave={onNext}
+                onPrevious={onPrevious}
+                initialServices={services}
+              />
             </CardContent>
           </>
         );
@@ -319,32 +324,43 @@ const IntegrationSteps = ({
               <CardDescription>{t("scheduleDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="pt-4">
-              <ScheduleCalendar onSave={onNext} />
+              <ScheduleCalendar
+                onSave={onNext}
+                onPrevious={onPrevious}
+                initialSchedule={initialSchedule}
+              />
+            </CardContent>
+          </>
+        );
+      case 5:
+        return (
+          <>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold">
+                {t("policyTitle")}
+              </CardTitle>
+              <CardDescription>{t("policyDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <PolicySetup onNext={() => onNext()} onPrevious={onPrevious} />
             </CardContent>
           </>
         );
       default:
+        // This will handle step 6 (final stage)
         return (
           <>
-            <CardHeader className="space-y-1 text-center">
-              <CardTitle className="text-2xl font-bold text-green-600">
-                {t("allSet")}
-              </CardTitle>
-              <CardDescription className="text-base">
-                {t("successMessage")}
-              </CardDescription>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold">{t("allSet")}</CardTitle>
+              <CardDescription>{t("successMessage")}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 pt-4 text-center">
-              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="bg-green-100 p-3 rounded-full">
-                    <Check className="h-10 w-10 text-green-600" />
-                  </div>
-                  <h3 className="font-medium text-slate-800 text-lg">
-                    {t("botReady")}
-                  </h3>
-                  <p className="text-slate-600">{t("readyDescription")}</p>
-                </div>
+            <CardContent className="space-y-4 pt-4">
+              <div className="text-center">
+                <CheckCircle2 className="mx-auto h-12 w-12 text-green-500" />
+                <p className="mt-2 text-sm text-slate-500">{t("botReady")}</p>
+                <p className="text-xs text-slate-400">
+                  {t("readyDescription")}
+                </p>
               </div>
             </CardContent>
             <CardFooter className="flex justify-center pt-2">
@@ -354,7 +370,7 @@ const IntegrationSteps = ({
               >
                 {isRTL ? (
                   <>
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    <ArrowRight className="mr-2 h-4 w-4" />
                     {t("goToChat")}
                   </>
                 ) : (
@@ -370,16 +386,32 @@ const IntegrationSteps = ({
     }
   };
 
+  // Hide step counter on final screen or show as completed
+  const showStepCounter = () => {
+    if (currentStep > 5) {
+      return (
+        <h2 className="text-center text-slate-600 font-medium">
+          {t("complete")}
+        </h2>
+      );
+    }
+    return (
+      <h2 className="text-center text-slate-600 font-medium">
+        {t("step")} {currentStep} {t("of")} 5
+      </h2>
+    );
+  };
+
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="space-y-2">
-        <h2 className="text-center text-slate-600 font-medium">
-          {t("step")} {currentStep} {t("of")} 4
-        </h2>
+        {showStepCounter()}
         <Progress value={calculateProgress()} className="h-2" />
         <div className="flex justify-between text-xs text-slate-500">
           <span>
-            {t("step")} {currentStep} {t("of")} 4
+            {currentStep > 5
+              ? t("complete")
+              : `${t("step")} ${currentStep} ${t("of")} 5`}
           </span>
           <span>
             {Math.round(calculateProgress())}% {t("complete")}
